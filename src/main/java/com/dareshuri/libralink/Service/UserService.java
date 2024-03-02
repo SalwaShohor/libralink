@@ -27,8 +27,4 @@ public interface UserService {
     // DELETE
     String deleteUserById(Long id);
     
-
-
-    
-
 }
