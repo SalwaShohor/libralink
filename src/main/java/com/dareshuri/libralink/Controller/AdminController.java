@@ -39,7 +39,7 @@ public class AdminController {
         return adminService.getAdminById(adminId);
     }
 
-    @GetMapping("/get-by-userid/{userId}")
+    @GetMapping("/get-by-user-id/{userId}")
     public List<Admin> getAdminByUserId(@PathVariable Long userId) {
         return adminService.getAdminByUserId(userId);
     }
