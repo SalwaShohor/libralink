@@ -34,9 +34,9 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherRepo.findById(id);
     }
 
-    // CREATE
+    // ADD
     @Override
-    public Teacher saveTeacher(Teacher teacher) {
+    public Teacher addTeacher(Teacher teacher) {
         return teacherRepo.save(teacher);
     }
 

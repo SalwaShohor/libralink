@@ -31,31 +31,37 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     // ADD
     @Override
-    public Department addDepartment(String name) {
-        Department newDepartment = new Department();
-        newDepartment.setName(name);
-        return departmentRepo.save(newDepartment);
+    public Department addDepartment(Department department) {
+        return departmentRepo.save(department);
     }
 
     // UPDATE
     @Override
-    public Department updateDepartment(Long id, String newName) {
-        Optional<Department> departmentOptional = departmentRepo.findById(id);
+    public Department updateDepartmentNameById(Long id, String newName) {
+        Optional<Department> existingDepartment = departmentRepo.findById(id);
         
-        if (departmentOptional.isPresent()) {
-            Department existingDepartment = departmentOptional.get();
-            existingDepartment.setName(newName);
-            return departmentRepo.save(existingDepartment);
+        if (existingDepartment.isPresent()) {
+            Department departmentToUpdate = existingDepartment.get();
+            departmentToUpdate.setName(newName);
+            return departmentRepo.save(departmentToUpdate);
         } else {
-            // Handle not found scenario, you can throw an exception or handle it as per your requirement.
             return null;
         }
     }
 
     // DELETE
     @Override
-    public void deleteDepartment(Long id) {
-        departmentRepo.deleteById(id);
+    public String deleteDepartmentById(Long id) {
+        Optional<Department> departmentOptional = departmentRepo.findById(id);
+
+        if(departmentOptional.isPresent()){
+            Department departmentToDelete = departmentOptional.get();
+            departmentRepo.delete(departmentToDelete);
+            return String.format("Department with id %d successfully deleted!",id);
+        }
+        
+        return String.format("Department with id %d is not found!",id);
+
     }
 
 

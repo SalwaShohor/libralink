@@ -14,12 +14,12 @@ public interface DepartmentService {
     Optional<Department> getDepartmentById(Long id);
 
     // ADD
-    Department addDepartment(String name);
+    Department addDepartment(Department department);
 
     // UPDATE
-    Department updateDepartment(Long id, String newName);
+    Department updateDepartmentNameById(Long id, String newName);
 
     // DELETE
-    void deleteDepartment(Long id);
+    String deleteDepartmentById(Long id);
     
 }

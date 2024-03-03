@@ -15,8 +15,8 @@ public interface TeacherService {
     Optional<Teacher> getTeacherById(Long id);
 
 
-    // CREATE
-    Teacher saveTeacher(Teacher teacher); //kiv
+    // ADD
+    Teacher addTeacher(Teacher teacher); //kiv
 
     // UPDATE
     Teacher updateDepartmentIdById(Long id, Long departmentId);

@@ -31,29 +31,36 @@ public class GenreServiceImpl implements GenreService {
 
     // ADD
     @Override
-    public Genre addGenre(String name) {
-        Genre genre = new Genre();
-        genre.setName(name);
+    public Genre addGenre(Genre genre) {
         return genreRepo.save(genre);
     }
 
     // UPDATE
     @Override
-    public Genre updateGenre(Long id, String name) {
-        Optional<Genre> optionalGenre = genreRepo.findById(id);
-        if (optionalGenre.isPresent()) {
-            Genre genre = optionalGenre.get();
-            genre.setName(name);
-            return genreRepo.save(genre);
+    public Genre updateGenreNameById(Long id, String newName) {
+        Optional<Genre> existingGenre = genreRepo.findById(id);
+        if (existingGenre.isPresent()) {
+            Genre genreToUpdate = existingGenre.get();
+            genreToUpdate.setName(newName);
+            return genreRepo.save(genreToUpdate);
         } else {
-            return null; // Handle not found scenario
+            return null; 
         }
     }
 
     // DELETE
     @Override
-    public void deleteGenre(Long id) {
-        genreRepo.deleteById(id);
+    public String deleteGenreById(Long id) {
+        Optional<Genre> genreOptional = genreRepo.findById(id);
+
+        if(genreOptional.isPresent()){
+            Genre genreToDelete = genreOptional.get();
+            genreRepo.delete(genreToDelete);
+            return String.format("Genre with id %d successfully deleted!",id);
+        }
+        
+        return String.format("Genre with id %d is not found!",id);
+
     }
 
 
