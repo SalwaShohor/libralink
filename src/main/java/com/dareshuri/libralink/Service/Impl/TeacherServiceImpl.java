@@ -15,7 +15,7 @@ import jakarta.transaction.Transactional;
 @Transactional
 public class TeacherServiceImpl implements TeacherService {
 
-    @Autowired 
+    @Autowired
     TeacherRepo teacherRepo;
 
     // READ
@@ -42,29 +42,32 @@ public class TeacherServiceImpl implements TeacherService {
 
     // UPDATE
     @Override
-    public void updateTeacher(Long id, Teacher updatedTeacher) {
+    public Teacher updateDepartmentIdById(Long id, Long departmentId) {
         Optional<Teacher> existingTeacher = teacherRepo.findById(id);
-        
+
         if (existingTeacher.isPresent()) {
             Teacher teacherToUpdate = existingTeacher.get();
-            teacherToUpdate.setUserId(updatedTeacher.getUserId());
-            teacherToUpdate.setDepartmentId(updatedTeacher.getDepartmentId());
-            
-            // Add any other fields you want to update
-            
-            teacherRepo.save(teacherToUpdate);
+            teacherToUpdate.setDepartmentId(departmentId);
+            return teacherRepo.save(teacherToUpdate);
+
         } else {
-            // Handle the case where the teacher with the given id doesn't exist
-            // You can throw an exception or handle it based on your requirements
+            return null;
         }
     }
 
     // DELETE
     @Override
-    public void deleteTeacher(Long id) {
-        teacherRepo.deleteById(id);
+    public String deleteTeacherById(Long id) {
+
+        Optional<Teacher> teacherOptional = teacherRepo.findById(id);
+
+        if(teacherOptional.isPresent()){
+            Teacher teacherToDelete = teacherOptional.get();
+            teacherRepo.delete(teacherToDelete);
+            return String.format("Teacher with id %d successfully deleted!",id);
+        }
+        
+        return String.format("Teacher with id %d is not found!",id);
     }
 
-
-    
 }
