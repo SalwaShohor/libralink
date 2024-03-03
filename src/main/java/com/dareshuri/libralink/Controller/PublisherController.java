@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,16 +45,40 @@ public class PublisherController {
         return publisherService.getPublisherById(id);
     }
 
-    //UPDATE
+    // //UPDATE
+    // @PutMapping("/update-publisher-info-by-id/{id}")
+    // public Publisher updatePublisherInfoById(@PathVariable Long id, @RequestBody Map<String,String> inpMap) {
+    //     return publisherService.updatePublisherInfoById(id, inpMap);
+    // }
+
     @PutMapping("/update-publisher-info-by-id/{id}")
-    public Publisher updatePublisherInfoById(@PathVariable Long id, @RequestBody Map<String,String> inpMap) {
-        return publisherService.updatePublisherInfoById(id, inpMap);
+    public ResponseEntity<Publisher> updatePublisherInfoById(@PathVariable Long id, @RequestBody Map<String, String> inpMap) {
+        Publisher updatedPublisher = publisherService.updatePublisherInfoById(id, inpMap);
+        
+        if (updatedPublisher != null) {
+            return ResponseEntity.ok(updatedPublisher);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    //DELETE
+
+    // //DELETE
+    // @DeleteMapping("/delete-by-id/{id}")
+    // public String deletePublisherById(@PathVariable Long id){
+    //     return publisherService.deletePublisherById(id);
+    // }
+
     @DeleteMapping("/delete-by-id/{id}")
-    public String deletePublisherById(@PathVariable Long id){
-        return publisherService.deletePublisherById(id);
+    public ResponseEntity<String> deletePublisherById(@PathVariable Long id) {
+        String resultMessage = publisherService.deletePublisherById(id);
+
+        if (resultMessage != null && resultMessage.contains("successfully deleted")) {
+            return ResponseEntity.ok(resultMessage);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+
     
 }

@@ -14,7 +14,8 @@ import jakarta.transaction.Transactional;
 @Transactional
 public class PublisherServiceImpl implements PublisherService{
 
-    @Autowired PublisherRepo publisherRepo;
+    @Autowired 
+    PublisherRepo publisherRepo;
 
     //CREATE
     @Override
