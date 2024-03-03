@@ -50,23 +50,23 @@ public class LoanDetailController {
     
     @GetMapping("/get-by-bookid/{bookId}")
     public List<LoanDetail> getLoanDetailByBookId(@PathVariable Long bookId) {
-        return loanDetailService.getLoanDetailByUserId(bookId);
+        return loanDetailService.getLoanDetailByBookId(bookId);
     }
 
-    @GetMapping("/get-by-loandate/{loanDate}")
-    public List<LoanDetail> getLoanDetailByLoanDate(@PathVariable String loanDate) throws ParseException {
-        return loanDetailService.getLoanDetailByLoanDate(loanDate);
-    }
+    // @GetMapping("/get-by-loandate/{loanDate}")
+    // public List<LoanDetail> getLoanDetailByLoanDate(@PathVariable String loanDate) throws ParseException {
+    //     return loanDetailService.getLoanDetailByLoanDate(loanDate);
+    // }
 
-    @GetMapping("/get-by-duedate/{dueDate}")
-    public List<LoanDetail> getLoanDetailByDueDate(@PathVariable String dueDate) throws ParseException {
-        return loanDetailService.getLoanDetailByDueDate(dueDate);
-    }
+    // @GetMapping("/get-by-duedate/{dueDate}")
+    // public List<LoanDetail> getLoanDetailByDueDate(@PathVariable String dueDate) throws ParseException {
+    //     return loanDetailService.getLoanDetailByDueDate(dueDate);
+    // }
 
-    @GetMapping("/get-by-returndate/{returnDate}")
-    public List<LoanDetail> getLoanDetailByReturnDate(@PathVariable String returnDate) throws ParseException {
-        return loanDetailService.getLoanDetailByReturnDate(returnDate);
-    }
+    // @GetMapping("/get-by-returndate/{returnDate}")
+    // public List<LoanDetail> getLoanDetailByReturnDate(@PathVariable String returnDate) throws ParseException {
+    //     return loanDetailService.getLoanDetailByReturnDate(returnDate);
+    // }
 
     // UPDATE
     @PutMapping("/update-loan-detail-by-id/{loanId}")

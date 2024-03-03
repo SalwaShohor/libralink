@@ -4,8 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -54,32 +52,44 @@ public class LoanDetailServiceImpl implements LoanDetailService {
         return loanDetailRepo.findAllByBookId(bookId);
     }
 
-    @Override
-    public List<LoanDetail> getLoanDetailByLoanDate(String loanDate) throws ParseException {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        Date formattedLoanDate = formatter.parse(loanDate);
+    // @Override
+    // public List<LoanDetail> getLoanDetailByLoanDate(String loanDate) throws ParseException {
+    //     SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+    //     Date formattedLoanDate = formatter.parse(loanDate);
+        
+    //     LocalDate localDate = formattedLoanDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    //     localDate = localDate.plusDays(1); // Adding one day
+        
+    //     Date loanDatePlusOne = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        
+    //     // Assuming you want to return all loan details with the given loan date plus one day
+    //     return loanDetailRepo.findByLoanDate(loanDatePlusOne);
+    // }
+    
 
-        Date loanDatePlusOne = new Date(formattedLoanDate.getTime() + (1000 * 60 * 60 * 24));
-        return loanDetailRepo.findByLoanDate(loanDatePlusOne);
-    }
+    // @Override
+	// public List<LoanDetail> getLoanDetailByDueDate(String dueDate) throws ParseException {
+	// 	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+    //     Date formattedDueDate = formatter.parse(dueDate);
 
-    @Override
-	public List<LoanDetail> getLoanDetailByDueDate(String dueDate) throws ParseException {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        Date formattedDueDate = formatter.parse(dueDate);
+    //     LocalDate localDate = formattedDueDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    //     localDate = localDate.plusDays(1);
 
-        Date dueDatePlusOne = new Date(formattedDueDate.getTime() + (1000 * 60 * 60 * 24));
-        return loanDetailRepo.findByDueDate(dueDatePlusOne);	
-    }
+    //     Date dueDatePlusOne = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+    //     return loanDetailRepo.findByDueDate(dueDatePlusOne);
+    // }
 
-	@Override
-	public List<LoanDetail> getLoanDetailByReturnDate(String returnDate) throws ParseException {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        Date formattedReturnDate = formatter.parse(returnDate);
+	// @Override
+	// public List<LoanDetail> getLoanDetailByReturnDate(String returnDate) throws ParseException {
+	// 	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+    //     Date formattedReturnDate = formatter.parse(returnDate);
 
-        Date returnDatePlusOne = new Date(formattedReturnDate.getTime() + (1000 * 60 * 60 * 24));
-        return loanDetailRepo.findByReturnDate(returnDatePlusOne);
-    }
+    //     LocalDate localDate = formattedReturnDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    //     localDate = localDate.plusDays(1);
+
+    //     Date returnDatePlusOne = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+    //     return loanDetailRepo.findByReturnDate(returnDatePlusOne);
+    // }
     
     
 

@@ -9,5 +9,4 @@ import com.dareshuri.libralink.Model.Book;
 public interface BookRepo extends CrudRepository<Book,Long> {
     Iterable<Book> findAllByTitle(String title);
     Iterable<Book> findAllByAuthor(String author);
-    Iterable<Book> findAllByGenre(String genre);
 }
