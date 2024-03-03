@@ -8,22 +8,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+
 @Entity
 @Table(name = "admins")
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
-    @NotBlank
     private Long adminId;
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
+    @NotBlank
+    private Long userId;
 
     public void setAdminId(Long adminId) {
         this.adminId = adminId;
@@ -31,5 +24,13 @@ public class Admin {
 
     public Long getAdminId() {
         return adminId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getUserId() {
+        return userId;
     }
 }
