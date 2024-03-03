@@ -41,12 +41,12 @@ public class BooksGenresController {
         return booksGenresService.getBooksGenresById(booksGenresId);
     }
 
-    @GetMapping("/get-by-bookid/{bookId}")
+    @GetMapping("/get-all-by-book-id/{bookId}")
     public List<BooksGenres> getBooksGenresByBookId(@PathVariable Long bookId) {
         return booksGenresService.getBooksGenresByBookId(bookId);
     }
     
-    @GetMapping("/get-by-genreid/{genreId}")
+    @GetMapping("/get-all-by-genre-id/{genreId}")
     public List<BooksGenres> getBooksGenresByGenreId(@PathVariable Long genreId) {
         return booksGenresService.getBooksGenresByGenreId(genreId);
     }
