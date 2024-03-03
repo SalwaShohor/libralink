@@ -6,7 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import javax.validation.constraints.NotBlank;
+
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "teachers")
@@ -14,9 +15,9 @@ public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long teacherId;
-    @NotBlank
+    @NotNull
     private Long userId;
-    @NotBlank
+    @NotNull
     private Long departmentId;
 
 
@@ -24,7 +25,7 @@ public class Teacher {
         this.teacherId = teacherId;
     }
 
-    public Long getTeacherId(Long teacherId){
+    public Long getTeacherId(){
         return teacherId;
     }
     
