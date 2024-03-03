@@ -15,13 +15,13 @@ public interface GenreService {
 
 
      // ADD
-     Genre addGenre(String name);
+     Genre addGenre(Genre genre);
 
      // UPDATE
-     Genre updateGenre(Long id, String name);
+     Genre updateGenreNameById(Long id, String newName);
  
      // DELETE
-     void deleteGenre(Long id);
+     String deleteGenreById(Long id);
 
     
     

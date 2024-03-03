@@ -44,10 +44,10 @@ public class TeacherController {
         return teacherService.getTeacherById(id);
     }
 
-    // CREATE
+    // ADD
     @PostMapping("/add")
     public Teacher addTeacher(@RequestBody Teacher teacher) {
-        return teacherService.saveTeacher(teacher);
+        return teacherService.addTeacher(teacher);
     }
 
     // UPDATE
