@@ -28,8 +28,6 @@ public class Book {
     @NotBlank
     private String author;
     @NotBlank
-    private String genre; 
-    @NotBlank
     private Integer quantity;
     @NotBlank
     private Integer availableQuantity;
@@ -74,14 +72,6 @@ public class Book {
 
     public String getAuthor() {
         return author;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public String getGenre() {
-        return genre;
     }
 
     public void setQuantity(Integer quantity) {

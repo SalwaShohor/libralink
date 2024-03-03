@@ -47,11 +47,6 @@ public class BookServiceImpl implements BookService  {
         return bookRepo.findAllByAuthor(author);
     }
 
-    @Override
-    public Iterable<Book> getAllBooksByGenre(String genre) {
-        return bookRepo.findAllByGenre(genre);
-    }
-
     // UPDATE
     @Override
     public Book updateBookInfoById(Long id, Map<String, String> inpMap) throws ParseException{
