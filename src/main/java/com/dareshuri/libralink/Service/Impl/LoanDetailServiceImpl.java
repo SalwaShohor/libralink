@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -52,19 +53,20 @@ public class LoanDetailServiceImpl implements LoanDetailService {
         return loanDetailRepo.findAllByBookId(bookId);
     }
 
-    // @Override
-    // public List<LoanDetail> getLoanDetailByLoanDate(String loanDate) throws ParseException {
-    //     SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-    //     Date formattedLoanDate = formatter.parse(loanDate);
+    @Override
+    public List<LoanDetail> getLoanDetailByLoanDate(String loanDate) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        Date formattedLoanDate = formatter.parse(loanDate);
         
-    //     LocalDate localDate = formattedLoanDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-    //     localDate = localDate.plusDays(1); // Adding one day
-        
-    //     Date loanDatePlusOne = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        
-    //     // Assuming you want to return all loan details with the given loan date plus one day
-    //     return loanDetailRepo.findByLoanDate(loanDatePlusOne);
-    // }
+         Calendar cal = Calendar.getInstance();
+    cal.setTime(formattedLoanDate);
+    cal.add(Calendar.DATE, 1); // Adding one day
+    
+    Date loanDatePlusOne = cal.getTime();
+    
+    // Assuming you want to return all loan details with the given loan date plus one day
+    return loanDetailRepo.findByLoanDate(loanDatePlusOne);
+    }
     
 
     // @Override
@@ -95,28 +97,78 @@ public class LoanDetailServiceImpl implements LoanDetailService {
 
     // UPDATE
     @Override
-    public LoanDetail updateLoanDetailById(Long loanId, Map<String, String> loanDetailMap) throws ParseException {
+    public LoanDetail updateBookIdById(Long loanId, Map<String, String> loanDetailMap) {
         Optional<LoanDetail> loanDetailToUpdateOptional = loanDetailRepo.findById(loanId);
 
         if (loanDetailToUpdateOptional.isPresent()) {
             LoanDetail loanDetailToUpdate = loanDetailToUpdateOptional.get();
             loanDetailToUpdate.setBookId(Long.parseLong(loanDetailMap.get("bookId")));
-
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-            Date formattedLoanDate = formatter.parse(loanDetailMap.get("loanDate"));
-            loanDetailToUpdate.setLoanDate(new Date(formattedLoanDate.getTime() + (1000 * 60 * 60 * 24)));
-
-            Date formattedDueDate = formatter.parse(loanDetailMap.get("dueDate"));
-            loanDetailToUpdate.setDueDate(new Date(formattedDueDate.getTime() + (1000 * 60 * 60 * 24)));
-
-            Date formattedReturnDate = formatter.parse(loanDetailMap.get("returnDate"));
-            loanDetailToUpdate.setReturnDate(new Date(formattedReturnDate.getTime() + (1000 * 60 * 60 * 24)));
-
-            loanDetailToUpdate.setStatus(loanDetailMap.get("status"));
             return loanDetailRepo.save(loanDetailToUpdate);
         }
-        return null;
+        return null; 
     }
+
+    @Override
+    public LoanDetail updateLoanDateById(Long loanId, Map<String, String> loanDetailMap) throws ParseException {
+        Optional<LoanDetail> loanDetailToUpdateOptional = loanDetailRepo.findById(loanId);
+
+    if (loanDetailToUpdateOptional.isPresent()) {
+        LoanDetail loanDetailToUpdate = loanDetailToUpdateOptional.get();
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        Date formattedLoanDate = formatter.parse(loanDetailMap.get("loanDate"));
+        loanDetailToUpdate.setLoanDate(new Date(formattedLoanDate.getTime() + (1000 * 60 * 60 * 24)));
+        
+        return loanDetailRepo.save(loanDetailToUpdate);
+    }
+    return null;
+    }
+
+    @Override
+    public LoanDetail updateDueDateById(Long loanId, Map<String, String> loanDetailMap) throws ParseException {
+        Optional<LoanDetail> loanDetailToUpdateOptional = loanDetailRepo.findById(loanId);
+
+    if (loanDetailToUpdateOptional.isPresent()) {
+        LoanDetail loanDetailToUpdate = loanDetailToUpdateOptional.get();
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        Date formattedDueDate = formatter.parse(loanDetailMap.get("dueDate"));
+        loanDetailToUpdate.setDueDate(new Date(formattedDueDate.getTime() + (1000 * 60 * 60 * 24)));
+        
+        return loanDetailRepo.save(loanDetailToUpdate);
+    }
+    return null;
+    }
+
+    @Override
+    public LoanDetail updateReturnDateById(Long loanId, Map<String, String> loanDetailMap) throws ParseException {
+        Optional<LoanDetail> loanDetailToUpdateOptional = loanDetailRepo.findById(loanId);
+
+    if (loanDetailToUpdateOptional.isPresent()) {
+        LoanDetail loanDetailToUpdate = loanDetailToUpdateOptional.get();
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        Date formattedReturnDate = formatter.parse(loanDetailMap.get("returnDate"));
+        loanDetailToUpdate.setReturnDate(new Date(formattedReturnDate.getTime() + (1000 * 60 * 60 * 24)));
+        
+        return loanDetailRepo.save(loanDetailToUpdate);
+    }
+    return null;
+    }
+
+    @Override
+    public LoanDetail updateStatusById(Long loanId, Map<String, String> loanDetailMap) {
+        Optional<LoanDetail> loanDetailToUpdateOptional = loanDetailRepo.findById(loanId);
+
+    if (loanDetailToUpdateOptional.isPresent()) {
+        LoanDetail loanDetailToUpdate = loanDetailToUpdateOptional.get();
+        loanDetailToUpdate.setStatus(loanDetailMap.get("status"));
+        return loanDetailRepo.save(loanDetailToUpdate);
+    }
+    return null;
+    }
+
+    
 
     // DELETE
     @Override
@@ -131,6 +183,8 @@ public class LoanDetailServiceImpl implements LoanDetailService {
 
         return String.format("Loan Detail with id %d not found!", loanId);
     }
+
+    
 
 	
 

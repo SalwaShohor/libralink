@@ -21,12 +21,16 @@ public interface LoanDetailService {
     Optional<LoanDetail> getLoanDetailById(Long loanId);
     List<LoanDetail> getLoanDetailByUserId(Long userId);
     List<LoanDetail> getLoanDetailByBookId(Long bookId);
-    // List<LoanDetail> getLoanDetailByLoanDate(String loanDate) throws ParseException;
+    List<LoanDetail> getLoanDetailByLoanDate(String loanDate) throws ParseException;
     // List<LoanDetail> getLoanDetailByDueDate(String dueDate) throws ParseException;
     // List<LoanDetail> getLoanDetailByReturnDate(String returnDate) throws ParseException;
 
     // UPDATE
-    LoanDetail updateLoanDetailById(Long loanId, Map<String, String> loanDetailMap) throws ParseException;
+    LoanDetail updateBookIdById(Long loanId, Map<String, String> loanDetailMap);
+    LoanDetail updateLoanDateById(Long loanId, Map<String, String> loanDetailMap) throws ParseException;
+    LoanDetail updateDueDateById(Long loanId, Map<String, String> loanDetailMap) throws ParseException;
+    LoanDetail updateReturnDateById(Long loanId, Map<String, String> loanDetailMap) throws ParseException;
+    LoanDetail updateStatusById(Long loanId, Map<String, String> loanDetailMap);
     
     // DELETE
     String deleteLoanDetailById(Long loanId);

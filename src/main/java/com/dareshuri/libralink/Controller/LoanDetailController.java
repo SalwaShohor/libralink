@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dareshuri.libralink.Model.LoanDetail;
@@ -53,10 +54,10 @@ public class LoanDetailController {
         return loanDetailService.getLoanDetailByBookId(bookId);
     }
 
-    // @GetMapping("/get-by-loandate/{loanDate}")
-    // public List<LoanDetail> getLoanDetailByLoanDate(@PathVariable String loanDate) throws ParseException {
-    //     return loanDetailService.getLoanDetailByLoanDate(loanDate);
-    // }
+    @GetMapping("/get-by-loandate/{loanDate}")
+    public List<LoanDetail> getLoanDetailByLoanDate(@PathVariable String loanDate) throws ParseException {
+        return loanDetailService.getLoanDetailByLoanDate(loanDate);
+    }
 
     // @GetMapping("/get-by-duedate/{dueDate}")
     // public List<LoanDetail> getLoanDetailByDueDate(@PathVariable String dueDate) throws ParseException {
@@ -69,9 +70,29 @@ public class LoanDetailController {
     // }
 
     // UPDATE
-    @PutMapping("/update-loan-detail-by-id/{loanId}")
-    public LoanDetail updateLoanDetailById(@PathVariable Long loanId, @RequestBody Map<String,String> loanDetailMap) throws ParseException{
-        return loanDetailService.updateLoanDetailById(loanId, loanDetailMap);
+    @PutMapping("/update-bookId-by-id/{loanId}")
+    public LoanDetail updateBookIdById(@PathVariable Long loanId, @RequestBody Map<String,String> loanDetailMap) {
+        return loanDetailService.updateBookIdById(loanId, loanDetailMap);
+    }
+
+    @PutMapping("/update-loanDate-by-id/{loanId}")
+    public LoanDetail updateLoanDateById(@PathVariable Long loanId, @RequestBody Map<String,String> loanDetailMap) throws ParseException {
+        return loanDetailService.updateLoanDateById(loanId, loanDetailMap);
+    }
+
+    @PutMapping("/update-dueDate-by-id/{loanId}")
+    public LoanDetail updateDueDateById(@PathVariable Long loanId, @RequestBody Map<String,String> loanDetailMap) throws ParseException {
+        return loanDetailService.updateDueDateById(loanId, loanDetailMap);
+    }
+
+    @PutMapping("/update-returnDate-by-id/{loanId}")
+    public LoanDetail updateReturnDateById(@PathVariable Long loanId, @RequestBody Map<String,String> loanDetailMap) throws ParseException {
+        return loanDetailService.updateReturnDateById(loanId, loanDetailMap);
+    }
+
+    @PutMapping("/update-status-by-id/{loanId}")
+    public LoanDetail updateStatusById(@PathVariable Long loanId, @RequestBody Map<String,String> loanDetailMap) {
+        return loanDetailService.updateStatusById(loanId, loanDetailMap);
     }
 
     // DELETE
