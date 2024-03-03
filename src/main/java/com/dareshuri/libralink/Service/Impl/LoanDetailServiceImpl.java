@@ -1,10 +1,9 @@
 package com.dareshuri.libralink.Service.Impl;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -30,7 +29,7 @@ public class LoanDetailServiceImpl implements LoanDetailService {
     public LoanDetail addLoanDetail(LoanDetail loanDetail) {
         loanDetail.setLoanDate(LocalDate.now());
         loanDetail.setDueDate(loanDetail.getLoanDate().plusDays(12));
-        loanDetail.setStatus("null");
+        loanDetail.setStatus("PENDING");
         return loanDetailRepo.save(loanDetail);
     }
 

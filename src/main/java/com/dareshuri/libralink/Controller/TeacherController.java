@@ -3,8 +3,6 @@ package com.dareshuri.libralink.Controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dareshuri.libralink.Service.UserService;
@@ -51,28 +50,16 @@ public class TeacherController {
         return teacherService.saveTeacher(teacher);
     }
 
-
-
     // UPDATE
-    @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateTeacher(@PathVariable Long id, @RequestBody Teacher updatedTeacher) {
-        try {
-            teacherService.updateTeacher(id, updatedTeacher);
-            return ResponseEntity.ok("Teacher updated successfully");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating teacher");
-        }
+    @PutMapping("/update-department-id-by-id/{id}")
+    public Teacher updateTeacher(@PathVariable Long id, @RequestParam Long departmentId) {
+        return teacherService.updateDepartmentIdById(id, departmentId);
     }
 
     // DELETE
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteTeacher(@PathVariable Long id) {
-        try {
-            teacherService.deleteTeacher(id);
-            return ResponseEntity.ok("Teacher deleted successfully");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting teacher");
-        }
+    @DeleteMapping("/delete-by-id/{id}")
+    public String deleteTeacher(@PathVariable Long id) {
+        return teacherService.deleteTeacherById(id);
     }
 
 

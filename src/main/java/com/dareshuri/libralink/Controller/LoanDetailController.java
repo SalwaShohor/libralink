@@ -1,7 +1,6 @@
 package com.dareshuri.libralink.Controller;
 
 import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -49,7 +48,7 @@ public class LoanDetailController {
     }
 
     // UPDATE
-    @PutMapping("/update-returnDate-by-id/{loanId}")
+    @PutMapping("/update-return-date-by-id/{loanId}")
     public LoanDetail updateReturnDateById(@PathVariable Long loanId, @RequestBody Map<String, String> loanDetailMap)
             throws ParseException {
         return loanDetailService.updateReturnDateById(loanId, loanDetailMap);
