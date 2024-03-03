@@ -16,6 +16,8 @@ public interface PenaltyService {
     Optional<Penalty> getPenaltyById(Long id);
 
     //UPDATE
+    Penalty updateAmountById(Long id, Long amount);
+    Penalty updatePaymentStatusById(Long id, Boolean amount);
 
     //DELETE
     String deletePenaltyById(Long id);
