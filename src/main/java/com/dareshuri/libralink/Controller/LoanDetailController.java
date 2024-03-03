@@ -42,7 +42,7 @@ public class LoanDetailController {
         return loanDetailService.getLoanDetailById(loanDetailId);
     }
 
-    @GetMapping("/get-by-userid/{userId}")
+    @GetMapping("/get-all-by-user-id/{userId}")
     public List<LoanDetail> getLoanDetailByUserId(@PathVariable Long userId) {
         return loanDetailService.getLoanDetailByUserId(userId);
     }
