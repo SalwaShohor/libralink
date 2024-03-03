@@ -16,12 +16,12 @@ public interface TeacherService {
 
 
     // CREATE
-    Teacher saveTeacher(Teacher teacher);
+    Teacher saveTeacher(Teacher teacher); //kiv
 
     // UPDATE
-    void updateTeacher(Long id, Teacher updatedTeacher);
+    Teacher updateDepartmentIdById(Long id, Long departmentId);
 
     // DELETE
-    void deleteTeacher(Long id);
+    String deleteTeacherById(Long id);
     
 }
