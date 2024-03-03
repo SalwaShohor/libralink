@@ -54,11 +54,6 @@ public class BookController {
         return bookService.getAllBooksByAuthor(author);
     }
 
-    @GetMapping("/get-all-by-genre/{genre}")
-    public Iterable<Book> getBookByGenre(@PathVariable String genre) {
-        return bookService.getAllBooksByGenre(genre);
-    }
-
     // UPDATE
     @PutMapping("update-info-by-id/{id}")
     public Book updateBookInfoById(@PathVariable Long id, @RequestBody Map<String,String> inpMap) throws ParseException {

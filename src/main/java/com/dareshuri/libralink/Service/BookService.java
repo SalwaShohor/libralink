@@ -19,7 +19,6 @@ public interface BookService {
     Optional<Book> getBookById(Long id);
     Iterable<Book> getAllBooksByTitle(String title);
     Iterable<Book> getAllBooksByAuthor(String author);
-    Iterable<Book> getAllBooksByGenre(String genre);
 
     // UPDATE
     Book updateBookInfoById(Long id, Map<String,String> inpMap) throws ParseException;
