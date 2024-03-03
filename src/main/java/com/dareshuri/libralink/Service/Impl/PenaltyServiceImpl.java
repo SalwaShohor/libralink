@@ -37,7 +37,33 @@ public class PenaltyServiceImpl implements PenaltyService{
         return penaltyRepo.findById(penaltyId);
     }
 
-    //UPDATE
+    // UPDATE
+    @Override
+    public Penalty updateAmountById(Long id, Long amount) {
+        Optional<Penalty> penaltyOptional = penaltyRepo.findById(id);
+        
+        if(penaltyOptional.isPresent()){
+            Penalty penalty = penaltyOptional.get();
+            penalty.setAmount(amount);
+            return penaltyRepo.save(penalty);
+        }
+
+        return null;
+    }
+
+    @Override
+    public Penalty updatePaymentStatusById(Long id, Boolean status) {
+        Optional<Penalty> penaltyOptional = penaltyRepo.findById(id);
+        
+        if(penaltyOptional.isPresent()){
+            Penalty penalty = penaltyOptional.get();
+            penalty.setPaymentStatus(status);
+            return penaltyRepo.save(penalty);
+        }
+
+        return null;
+    }
+
 
     //DELETE
     @Override
@@ -47,10 +73,10 @@ public class PenaltyServiceImpl implements PenaltyService{
         if(penaltyOptional.isPresent()){
             Penalty penalty = penaltyOptional.get();
             penaltyRepo.delete(penalty);
-            return String.format("User with id %d successfully deleted!", id);
+            return String.format("Penalty with id %d successfully deleted!", id);
         }
 
-        return String.format("User with id %d not found!", id);
+        return String.format("Penalty with id %d not found!", id);
     }
 
     @Override
@@ -60,9 +86,9 @@ public class PenaltyServiceImpl implements PenaltyService{
         if(penaltyOptional.isPresent()){
             Penalty penalty = penaltyOptional.get();
             penaltyRepo.delete(penalty);
-            return String.format("User with id %d successfully deleted!", loanId);
+            return String.format("Penalty with loan id %d successfully deleted!", loanId);
         }
 
-        return String.format("User with id %d not found!", loanId);
+        return String.format("Penalty with loan id %d not found!", loanId);
     }
 }
