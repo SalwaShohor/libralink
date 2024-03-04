@@ -107,8 +107,8 @@ public class UserServiceImpl implements UserService {
 
     // LOGIN
     @Override
-    public User login(String username, String password) {
-        User user = userRepo.findByUsernameAndPassword(username, password);
+    public User login(Map<String,String> map) {
+        User user = userRepo.findByEmailAndPassword(map.get("email"),map.get("password"));
         return user;
     }
 
