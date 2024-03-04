@@ -105,6 +105,13 @@ public class UserServiceImpl implements UserService {
         return String.format("User with id %d not found!", id);
     }
 
+    // LOGIN
+    @Override
+    public User login(String username, String password) {
+        User user = userRepo.findByUsernameAndPassword(username, password);
+        return user;
+    }
+
     
 
 

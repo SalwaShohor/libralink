@@ -26,5 +26,8 @@ public interface UserService {
 
     // DELETE
     String deleteUserById(Long id);
+
+    //LOGIN
+    User login(String username, String password);
     
 }
