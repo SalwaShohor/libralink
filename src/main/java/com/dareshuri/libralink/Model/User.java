@@ -27,6 +27,13 @@ public class User {
     @NotBlank
     private String role;
 
+    public User(){}
+
+    public User(Long id, String username, String password) {
+        this.userId = id;
+        this.username = username;
+        this.password = password;
+    }
 
     public void setUserId(Long userId) {
         this.userId = userId;
