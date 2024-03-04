@@ -28,6 +28,6 @@ public interface UserService {
     String deleteUserById(Long id);
 
     //LOGIN
-    User login(String username, String password);
+    User login(Map<String,String> map);
     
 }
