@@ -3,7 +3,7 @@ package com.dareshuri.libralink.Service.Impl;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -77,16 +77,18 @@ public class LoanDetailServiceImpl implements LoanDetailService {
 
     // DELETE
     @Override
-    public String deleteLoanDetailById(Long loanId) {
+    public Map<String,Boolean> deleteLoanDetailById(Long loanId) {
+        Map<String,Boolean> resMap = new HashMap<>();
         Optional<LoanDetail> loanDetailToDeleteOptional = loanDetailRepo.findById(loanId);
 
         if (loanDetailToDeleteOptional.isPresent()) {
             LoanDetail loanDetailToDelete = loanDetailToDeleteOptional.get();
             loanDetailRepo.delete(loanDetailToDelete);
-            return String.format("Loan Detail with id %d successfully deleted!", loanId);
+            resMap.put("deleteStatus", true);
+            return resMap;
+        } else{
+            resMap.put("deleteStatus", false);
+            return resMap;
         }
-
-        return String.format("Loan Detail with id %d not found!", loanId);
     }
-
 }

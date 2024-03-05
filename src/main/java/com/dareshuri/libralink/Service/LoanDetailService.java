@@ -25,5 +25,5 @@ public interface LoanDetailService {
     LoanDetail updateStatusById(Long loanId, Map<String, String> loanDetailMap);
     
     // DELETE
-    String deleteLoanDetailById(Long loanId);
+    Map<String,Boolean> deleteLoanDetailById(Long loanId);
 }

@@ -63,7 +63,7 @@ public class LoanDetailController {
 
     // DELETE
     @DeleteMapping("/delete-by-id/{loanId}")
-    public String deleteLoanDetailById(@PathVariable Long loanId) {
+    public Map<String,Boolean> deleteLoanDetailById(@PathVariable Long loanId) {
         return loanDetailService.deleteLoanDetailById(loanId);
     }
 
