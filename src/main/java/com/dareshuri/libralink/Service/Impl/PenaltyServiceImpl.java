@@ -1,5 +1,6 @@
 package com.dareshuri.libralink.Service.Impl;
 
+import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,12 +53,12 @@ public class PenaltyServiceImpl implements PenaltyService{
     }
 
     @Override
-    public Penalty updatePaymentStatusById(Long id, Boolean status) {
+    public Penalty updatePaymentStatusById(Long id, Map<String, String> penaltyMap) {
         Optional<Penalty> penaltyOptional = penaltyRepo.findById(id);
         
         if(penaltyOptional.isPresent()){
             Penalty penalty = penaltyOptional.get();
-            penalty.setPaymentStatus(status);
+            penalty.setPaymentStatus(Boolean.parseBoolean(penaltyMap.get("paymentStatus")));
             return penaltyRepo.save(penalty);
         }
 

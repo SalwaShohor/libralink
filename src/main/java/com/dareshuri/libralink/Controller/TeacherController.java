@@ -3,6 +3,7 @@ package com.dareshuri.libralink.Controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +18,7 @@ import com.dareshuri.libralink.Service.UserService;
 import com.dareshuri.libralink.Model.Teacher;
 import com.dareshuri.libralink.Service.TeacherService;
 
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/teacher")
 public class TeacherController {
