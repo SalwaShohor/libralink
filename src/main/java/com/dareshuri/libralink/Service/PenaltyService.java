@@ -1,5 +1,7 @@
 package com.dareshuri.libralink.Service;
 
+import java.text.ParseException;
+import java.util.Map;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 import com.dareshuri.libralink.Model.Penalty;
@@ -17,7 +19,7 @@ public interface PenaltyService {
 
     //UPDATE
     Penalty updateAmountById(Long id, Long amount);
-    Penalty updatePaymentStatusById(Long id, Boolean amount);
+    Penalty updatePaymentStatusById(Long id, Map<String, String> penaltyMap);
 
     //DELETE
     String deletePenaltyById(Long id);
