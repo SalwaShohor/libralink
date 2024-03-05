@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,13 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dareshuri.libralink.Model.User;
 import com.dareshuri.libralink.Service.UserService;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
-
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -27,15 +27,15 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    // CREATE 
+    // CREATE
     @PostMapping("/add")
     public User addUser(@RequestBody User user) {
         return userService.addUser(user);
     }
-    
+
     // READ
     @GetMapping("/get-all")
-    Iterable<User> getAllUsers(){
+    public Iterable<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
@@ -61,7 +61,7 @@ public class UserController {
 
     // UPDATE
     @PutMapping("update-profile-info-by-id/{id}")
-    public User updatePhoneNumberById(@PathVariable Long id, @RequestBody Map<String,String> inpMap) {
+    public User updatePhoneNumberById(@PathVariable Long id, @RequestBody Map<String, String> inpMap) {
         return userService.updateProfileInfoById(id, inpMap);
     }
 
@@ -77,9 +77,14 @@ public class UserController {
 
     // DELETE
     @DeleteMapping("delete-by-id/{id}")
-    public String deleteUserById(@PathVariable Long id){
+    public String deleteUserById(@PathVariable Long id) {
         return userService.deleteUserById(id);
     }
-    
+
+    // LOGIN
+    @PostMapping("/login")
+    public User login(@RequestBody Map<String,String> map) {
+        return userService.login(map);
+    }
     
 }

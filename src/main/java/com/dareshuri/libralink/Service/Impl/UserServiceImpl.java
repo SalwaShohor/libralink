@@ -105,6 +105,13 @@ public class UserServiceImpl implements UserService {
         return String.format("User with id %d not found!", id);
     }
 
+    // LOGIN
+    @Override
+    public User login(Map<String,String> map) {
+        User user = userRepo.findByEmailAndPassword(map.get("email"),map.get("password"));
+        return user;
+    }
+
     
 
 
